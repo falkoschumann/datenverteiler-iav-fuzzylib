@@ -13,18 +13,7 @@ import java.util.Map;
  */
 public class Basisvariable {
 
-    private String name;
     private Map<String, FuzzySet> fuzzySets = new LinkedHashMap<String, FuzzySet>();
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        if (name == null)
-            throw new NullPointerException("Der Parameter name ist null.");
-        this.name = name;
-    }
 
     public List<FuzzySet> getFuzzySets() {
         return new ArrayList<FuzzySet>(fuzzySets.values());
@@ -45,7 +34,7 @@ public class Basisvariable {
 
     @Override
     public String toString() {
-        return getClass() + getName() + "(name=" + getName() + ", fuzzySets=" + getFuzzySets() + ")";
+        return getClass().getName() + "(fuzzySets=" + getFuzzySets() + ")";
     }
 
 }

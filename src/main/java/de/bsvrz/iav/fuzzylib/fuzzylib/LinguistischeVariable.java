@@ -13,28 +13,7 @@ import java.util.Map;
  */
 public class LinguistischeVariable {
 
-    private String name;
     private Map<String, LinguistischerTerm> terme = new LinkedHashMap<String, LinguistischerTerm>();
-
-    public LinguistischeVariable() {
-        // Standardkonstruktor
-    }
-
-    public LinguistischeVariable(Basisvariable basisvariable) {
-        setName(basisvariable.getName());
-        for (FuzzySet fuzzySet : basisvariable.getFuzzySets())
-            setTerm(new LinguistischerTerm(fuzzySet.getName(), 0.0));
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        if (name == null)
-            throw new NullPointerException("Der Parameter name ist null.");
-        this.name = name;
-    }
 
     public List<LinguistischerTerm> getTerme() {
         return new ArrayList<LinguistischerTerm>(terme.values());
@@ -59,10 +38,7 @@ public class LinguistischeVariable {
             return true;
         } else if (obj instanceof LinguistischeVariable) {
             LinguistischeVariable other = (LinguistischeVariable) obj;
-            boolean result = true;
-            result &= ((name == null && other.name == null) || (name != null && name.equals(other.name)));
-            result &= terme.equals(other.terme);
-            return result;
+            return terme.equals(other.terme);
         }
 
         return false;
@@ -70,7 +46,7 @@ public class LinguistischeVariable {
 
     @Override
     public String toString() {
-        return getName() + getTerme();
+        return getClass().getName() + "(terme=" + getTerme() + ")";
     }
 
 }

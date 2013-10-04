@@ -15,8 +15,10 @@ package de.bsvrz.iav.fuzzylib.fuzzylib;
  * Zugehörigkeit 1, der dritte und vierte Punkt sind identisch und haben die Zugehörigkeit 1</li>
  * <li>Absteigende Rampe: der erste und zweite Punkt sind identisch und haben die Zugehörigkeit 1,
  * der dritte Punkt hat die Zugehörigkeit 1, der vierte Punkt hat die Zugehörigkeit 0</li>
+ * <li>Spezialfall Trapez über Wertebereichsgrenzen: z.B. Norden bei der Windrichtung; hier liegen
+ * der erste und zweite Punkt hinter den dritten und vierten Punkt; der erste Punkt und der vierte
+ * Punkt haben die Zugehörigkeit 0, der zweite und dritte Punkt haben die Zugehörigkeit 1.</li>
  * </ul>
- * TODO Trapez über Wertebereichsgrenzen z.B. Norden bei der Windrichtung
  * TODO Fuzzy-Funktionen mit Bild verdeutlichen
  *
  * @author Falko Schumann &lt;falko.schumann@muspellheim.de&gt;
@@ -81,6 +83,28 @@ public class FuzzySet {
 
     public void setT4(double t4) {
         this.t4 = t4;
+    }
+
+    /**
+     * Prüft ob der übergebene Wert im Fuzy-Set enthalten ist. Zurückgeben wird die Zugehörigkeit
+     * des Wertes zum Fuzzy-Set. Die Zugehörigkeit ist eine Zahl im Intervall [0,1], wobei 0 für
+     * nicht enthalten und 1 für enthalten steht.
+     */
+    public double contains(double wert) {
+        // TODO Sonderfall Norden behandeln
+        if (t1 < wert && wert < t2) {
+            // ansteigende Trapezkante, Zugehörigkeit mit Hilfe des Strahlensatzes ausrechnen
+            return (wert - t1) / (t2 - t1);
+        } else if (t2 <= wert && wert <= t3) {
+            // obere Trapezkante
+            return 1.0;
+        } else if (t3 < wert && wert < t4) {
+            // absteigende Trapezkante, Zugehörigkeit mit Hilfe des Strahlensatzes ausrechnen
+            return (t4 - wert) / (t4 - t3);
+        }
+
+        // Wert nicht im Fuzzy-Set enthalten
+        return 0.0;
     }
 
     @Override

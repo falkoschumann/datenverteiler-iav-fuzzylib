@@ -1,0 +1,58 @@
+package de.bsvrz.iav.fuzzylib.fuzzylib;
+
+import org.junit.Before;
+import org.junit.Test;
+
+import static org.junit.Assert.assertEquals;
+
+/**
+ * Unit Test für ein Fuzzy-Set mit der Fuzzy-Funktion Dreieck.
+ *
+ * @author Falko Schumann &lt;falko.schumann@muspellheim.de&gt;
+ */
+public class FuzzySetDreieckTest {
+
+    private FuzzySet fixture;
+
+    @Before
+    public void setUp() {
+        fixture = new FuzzySet("Dreieck", 10, 20, 20, 30);
+    }
+
+    @Test
+    public void testContains_WertVorT1() {
+        assertEquals(0.0, fixture.contains(5), 0.00001);
+    }
+
+    @Test
+    public void testContains_WertT1() {
+        assertEquals(0.0, fixture.contains(10), 0.00001);
+    }
+
+    @Test
+    public void testContains_WertZwischenT1UndT2() {
+        assertEquals(0.7, fixture.contains(17), 0.00001);
+    }
+
+    @Test
+    public void testContains_WertT2UndT3() {
+        assertEquals(1.0, fixture.contains(20), 0.00001);
+    }
+
+    @Test
+    public void testContains_WertZwischenT3UndT4() {
+        assertEquals(0.7, fixture.contains(23), 0.00001);
+    }
+
+    @Test
+    public void testContains_WertT4() {
+        assertEquals(0.0, fixture.contains(30), 0.00001);
+    }
+
+    @Test
+    public void testContains_WertHinterT4() {
+        assertEquals(0.0, fixture.contains(40), 0.00001);
+    }
+
+
+}

@@ -22,7 +22,6 @@ public class FuzzyfizierungTest {
         fixture = new Fuzzyfizierung();
 
         basisvariable = new Basisvariable();
-        basisvariable.setName("Temperatur");
         basisvariable.setFuzzySet(new FuzzySet("kalt", 0, 0, 15, 20));
         basisvariable.setFuzzySet(new FuzzySet("warm", 15, 20, 25, 30));
         basisvariable.setFuzzySet(new FuzzySet("heiß", 25, 30, 100, 100));
@@ -33,7 +32,7 @@ public class FuzzyfizierungTest {
         double messwert = 0;
         final LinguistischeVariable actual = fixture.fuzzyfiziere(basisvariable, messwert);
 
-        LinguistischeVariable expected = new LinguistischeVariable(basisvariable);
+        LinguistischeVariable expected = new LinguistischeVariable();
         expected.setTerm(new LinguistischerTerm("kalt", 1.0));
         expected.setTerm(new LinguistischerTerm("warm", 0.0));
         expected.setTerm(new LinguistischerTerm("heiß", 0.0));
@@ -45,7 +44,7 @@ public class FuzzyfizierungTest {
         double messwert = 15;
         final LinguistischeVariable actual = fixture.fuzzyfiziere(basisvariable, messwert);
 
-        LinguistischeVariable expected = new LinguistischeVariable(basisvariable);
+        LinguistischeVariable expected = new LinguistischeVariable();
         expected.setTerm(new LinguistischerTerm("kalt", 1.0));
         expected.setTerm(new LinguistischerTerm("warm", 0.0));
         expected.setTerm(new LinguistischerTerm("heiß", 0.0));
@@ -57,7 +56,7 @@ public class FuzzyfizierungTest {
         double messwert = 17;
         final LinguistischeVariable actual = fixture.fuzzyfiziere(basisvariable, messwert);
 
-        LinguistischeVariable expected = new LinguistischeVariable(basisvariable);
+        LinguistischeVariable expected = new LinguistischeVariable();
         expected.setTerm(new LinguistischerTerm("kalt", 0.6));
         expected.setTerm(new LinguistischerTerm("warm", 0.4));
         expected.setTerm(new LinguistischerTerm("heiß", 0.0));
@@ -70,7 +69,7 @@ public class FuzzyfizierungTest {
         double messwert = 20;
         final LinguistischeVariable actual = fixture.fuzzyfiziere(basisvariable, messwert);
 
-        LinguistischeVariable expected = new LinguistischeVariable(basisvariable);
+        LinguistischeVariable expected = new LinguistischeVariable();
         expected.setTerm(new LinguistischerTerm("kalt", 0.0));
         expected.setTerm(new LinguistischerTerm("warm", 1.0));
         expected.setTerm(new LinguistischerTerm("heiß", 0.0));
@@ -82,7 +81,7 @@ public class FuzzyfizierungTest {
         double messwert = 25;
         final LinguistischeVariable actual = fixture.fuzzyfiziere(basisvariable, messwert);
 
-        LinguistischeVariable expected = new LinguistischeVariable(basisvariable);
+        LinguistischeVariable expected = new LinguistischeVariable();
         expected.setTerm(new LinguistischerTerm("kalt", 0.0));
         expected.setTerm(new LinguistischerTerm("warm", 1.0));
         expected.setTerm(new LinguistischerTerm("heiß", 0.0));
@@ -94,7 +93,7 @@ public class FuzzyfizierungTest {
         double messwert = 28;
         final LinguistischeVariable actual = fixture.fuzzyfiziere(basisvariable, messwert);
 
-        LinguistischeVariable expected = new LinguistischeVariable(basisvariable);
+        LinguistischeVariable expected = new LinguistischeVariable();
         expected.setTerm(new LinguistischerTerm("kalt", 0.0));
         expected.setTerm(new LinguistischerTerm("warm", 0.4));
         expected.setTerm(new LinguistischerTerm("heiß", 0.6));
@@ -107,7 +106,7 @@ public class FuzzyfizierungTest {
         double messwert = 30;
         final LinguistischeVariable actual = fixture.fuzzyfiziere(basisvariable, messwert);
 
-        LinguistischeVariable expected = new LinguistischeVariable(basisvariable);
+        LinguistischeVariable expected = new LinguistischeVariable();
         expected.setTerm(new LinguistischerTerm("kalt", 0.0));
         expected.setTerm(new LinguistischerTerm("warm", 0.0));
         expected.setTerm(new LinguistischerTerm("heiß", 1.0));
@@ -119,7 +118,7 @@ public class FuzzyfizierungTest {
         double messwert = 100;
         final LinguistischeVariable actual = fixture.fuzzyfiziere(basisvariable, messwert);
 
-        LinguistischeVariable expected = new LinguistischeVariable(basisvariable);
+        LinguistischeVariable expected = new LinguistischeVariable();
         expected.setTerm(new LinguistischerTerm("kalt", 0.0));
         expected.setTerm(new LinguistischerTerm("warm", 0.0));
         expected.setTerm(new LinguistischerTerm("heiß", 1.0));
