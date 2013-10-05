@@ -15,7 +15,7 @@ package de.bsvrz.iav.fuzzylib.fuzzylib;
  * Zugehörigkeit 1, der dritte und vierte Punkt sind identisch und haben die Zugehörigkeit 1</li>
  * <li>Absteigende Rampe: der erste und zweite Punkt sind identisch und haben die Zugehörigkeit 1,
  * der dritte Punkt hat die Zugehörigkeit 1, der vierte Punkt hat die Zugehörigkeit 0</li>
- * <li>Spezialfall Trapez über Wertebereichsgrenzen: z.B. Norden bei der Windrichtung; hier liegen
+ * <li>Sonderfall Trapez über Wertebereichsgrenzen: z.B. Norden bei der Windrichtung; hier liegen
  * der erste und zweite Punkt hinter den dritten und vierten Punkt; der erste Punkt und der vierte
  * Punkt haben die Zugehörigkeit 0, der zweite und dritte Punkt haben die Zugehörigkeit 1.</li>
  * </ul>
@@ -91,7 +91,20 @@ public class FuzzySet {
      * nicht enthalten und 1 für enthalten steht.
      */
     public double contains(double wert) {
-        // TODO Sonderfall Norden behandeln
+        if (isTrapez()) {
+            return containsTrapez(wert);
+        } else if (isSonderfall()) {
+            return containSonderfall(wert);
+        }
+
+        throw new IllegalStateException("Das Fuzzy-Set ist ungültig: " + toString());
+    }
+
+    private boolean isTrapez() {
+        return t1 <= t2 && t2 <= t3 && t3 <= t4;
+    }
+
+    private double containsTrapez(double wert) {
         if (t1 < wert && wert < t2) {
             // ansteigende Trapezkante, Zugehörigkeit mit Hilfe des Strahlensatzes ausrechnen
             return (wert - t1) / (t2 - t1);
@@ -107,9 +120,29 @@ public class FuzzySet {
         return 0.0;
     }
 
+    private boolean isSonderfall() {
+        return t1 <= t2 && t3 <= t4 && t4 <= t1;
+    }
+
+    private double containSonderfall(double wert) {
+        if (t1 < wert && wert < t2) {
+            // ansteigende Trapezkante, Zugehörigkeit mit Hilfe des Strahlensatzes ausrechnen
+            return (wert - t1) / (t2 - t1);
+        } else if (t3 < wert && wert < t4) {
+            // absteigende Trapezkante, Zugehörigkeit mit Hilfe des Strahlensatzes ausrechnen
+            return (t4 - wert) / (t4 - t3);
+        } else if (wert >= t2 || wert <= t3) {
+            // obere Trapezkante
+            return 1.0;
+        }
+
+        // Wert nicht im Fuzzy-Set enthalten
+        return 0.0;
+    }
+
     @Override
     public String toString() {
-        return getClass().getName() + "(name=" + getName() + ", t1=" + getT1() + ", t2=" + getT2() + ", t3=" + getT3() + ", t4=" + getT4() + ")";
+        return getName() + "{t1=" + getT1() + ", t2=" + getT2() + ", t3=" + getT3() + ", t4=" + getT4() + "}";
     }
 
 }
