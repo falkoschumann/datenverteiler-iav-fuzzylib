@@ -43,6 +43,10 @@ public class LinguistischerTerm {
         // Standardkonstruktor
     }
 
+    public LinguistischerTerm(String name) {
+        setName(name);
+    }
+
     public LinguistischerTerm(String name, double zugehoerigkeit) {
         setName(name);
         setZugehoerigkeit(zugehoerigkeit);
@@ -75,8 +79,7 @@ public class LinguistischerTerm {
             return true;
         } else if (obj instanceof LinguistischerTerm) {
             LinguistischerTerm other = (LinguistischerTerm) obj;
-            boolean result = true;
-            result &= (name == null && other.name == null)
+            boolean result = (name == null && other.name == null)
                     || (name != null && name.equals(other.name));
             result &= Double.compare(zugehoerigkeit, other.zugehoerigkeit) == 0;
             return result;
