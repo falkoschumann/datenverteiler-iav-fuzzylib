@@ -40,15 +40,18 @@ public class Operatoren {
 
     /**
      * Berechnet das Minimum der Operanden und speichert es im Ergebnis. Das Minimum entspricht der
-     * Schnittmenge in der Mengenlehre bzw. dem Und-Operator in der Logik.
+     * Schnittmenge in der Mengenlehre bzw. dem Und-Operator in der Logik. Zum Verketten von
+     * Operatoren wird das Ergebnis von der Methode auch zurückgegeben.
      */
-    public static void min(LinguistischerTerm ergebnis, LinguistischerTerm... operanden) {
+    public static LinguistischerTerm min(LinguistischerTerm ergebnis,
+                                         LinguistischerTerm... operanden) {
         validiereArgumente(ergebnis, operanden);
         double min = Double.MAX_VALUE;
         for (LinguistischerTerm o : operanden)
             if (o.getZugehoerigkeit() < min)
                 min = o.getZugehoerigkeit();
         ergebnis.setZugehoerigkeit(min);
+        return ergebnis;
     }
 
     private static void validiereArgumente(LinguistischerTerm ergebnis,
@@ -64,47 +67,55 @@ public class Operatoren {
 
     /**
      * Berechnet das Maximum der Operanden und speichert es im Ergebnis. Das Maximum entspricht der
-     * Vereinigung in der Mengenlehre bzw. dem Oder-Operator in der Logik.
+     * Vereinigung in der Mengenlehre bzw. dem Oder-Operator in der Logik. Zum Verketten von
+     * Operatoren wird das Ergebnis von der Methode auch zurückgegeben.
      */
-    public static void max(LinguistischerTerm ergebnis, LinguistischerTerm... operanden) {
+    public static LinguistischerTerm max(LinguistischerTerm ergebnis,
+                                         LinguistischerTerm... operanden) {
         validiereArgumente(ergebnis, operanden);
         double max = Double.MIN_VALUE;
         for (LinguistischerTerm o : operanden)
             if (o.getZugehoerigkeit() > max)
                 max = o.getZugehoerigkeit();
         ergebnis.setZugehoerigkeit(max);
+        return ergebnis;
     }
 
     /**
-     * Berechnet das algebraische Produkt der Operanden und speichert es im Ergebnis.
+     * Berechnet das algebraische Produkt der Operanden und speichert es im Ergebnis. Zum Verketten
+     * von Operatoren wird das Ergebnis von der Methode auch zurückgegeben.
      */
-    public static void algebraischesProdukt(LinguistischerTerm ergebnis,
-                                            LinguistischerTerm... operanden) {
+    public static LinguistischerTerm algebraischesProdukt(LinguistischerTerm ergebnis,
+                                                          LinguistischerTerm... operanden) {
         validiereArgumente(ergebnis, operanden);
         double produkt = 1.0;
         for (LinguistischerTerm o : operanden)
             produkt *= o.getZugehoerigkeit();
         ergebnis.setZugehoerigkeit(produkt);
+        return ergebnis;
     }
 
     /**
-     * Berechnet die algebraische Summe der Operanden und speichert es im Ergebnis.
+     * Berechnet die algebraische Summe der Operanden und speichert es im Ergebnis. Zum Verketten
+     * von Operatoren wird das Ergebnis von der Methode auch zurückgegeben.
      */
-    public static void algebraischesSumme(LinguistischerTerm ergebnis,
-                                          LinguistischerTerm... operanden) {
+    public static LinguistischerTerm algebraischesSumme(LinguistischerTerm ergebnis,
+                                                        LinguistischerTerm... operanden) {
         validiereArgumente(ergebnis, operanden);
         double d = 1.0;
         for (LinguistischerTerm o : operanden)
             d *= 1 - o.getZugehoerigkeit();
         ergebnis.setZugehoerigkeit(1 - d);
+        return ergebnis;
     }
 
     /**
-     * Wendet den Gamma-Operator auf die Operanden an und speichert das Resultat im Ergebnis.
+     * Wendet den Gamma-Operator auf die Operanden an und speichert das Resultat im Ergebnis. Zum
+     * Verketten von Operatoren wird das Ergebnis von der Methode auch zurückgegeben.
      */
-    public static void gammaOperator(LinguistischerTerm ergebnis,
-                                     double gamma,
-                                     LinguistischerTerm... operanden) {
+    public static LinguistischerTerm gammaOperator(LinguistischerTerm ergebnis,
+                                                   double gamma,
+                                                   LinguistischerTerm... operanden) {
         validiereArgumente(ergebnis, operanden);
         LinguistischerTerm produkt = new LinguistischerTerm();
         algebraischesProdukt(produkt, operanden);
@@ -112,6 +123,8 @@ public class Operatoren {
         algebraischesSumme(summe, operanden);
         ergebnis.setZugehoerigkeit(Math.pow(produkt.getZugehoerigkeit(), 1.0 - gamma)
                 * Math.pow(summe.getZugehoerigkeit(), gamma));
+
+        return ergebnis;
     }
 
 }

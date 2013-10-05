@@ -93,4 +93,16 @@ public class OperatorenTest {
         assertEquals(0.407308, t1.getZugehoerigkeit(), 0.00001);
     }
 
+    @Test
+    public void testKombinationVonOperatoren() {
+        LinguistischerTerm t1 = new LinguistischerTerm("t1");
+        LinguistischerTerm t2 = new LinguistischerTerm("t2", 0.7);
+        LinguistischerTerm t3 = new LinguistischerTerm("t3", 0.3);
+        LinguistischerTerm t4 = new LinguistischerTerm("t4", 0.5);
+
+        Operatoren.min(t1, t2, Operatoren.max(t1, t3, t4));
+
+        assertEquals(0.5, t1.getZugehoerigkeit(), 0.00001);
+    }
+
 }
