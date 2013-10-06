@@ -120,8 +120,6 @@ public class FuzzySet {
     public double contains(double wert) {
         if (isTrapez()) {
             return containsTrapez(wert);
-        } else if (isSonderfall()) {
-            return containSonderfall(wert);
         }
 
         throw new IllegalStateException("Das Fuzzy-Set ist ungültig: " + toString());
@@ -147,25 +145,6 @@ public class FuzzySet {
         return 0.0;
     }
 
-    private boolean isSonderfall() {
-        return t1 <= t2 && t3 <= t4 && t4 <= t1;
-    }
-
-    private double containSonderfall(double wert) {
-        if (t1 < wert && wert < t2) {
-            // ansteigende Trapezkante, Zugehörigkeit mit Hilfe des Strahlensatzes ausrechnen
-            return (wert - t1) / (t2 - t1);
-        } else if (t3 < wert && wert < t4) {
-            // absteigende Trapezkante, Zugehörigkeit mit Hilfe des Strahlensatzes ausrechnen
-            return (t4 - wert) / (t4 - t3);
-        } else if (wert >= t2 || wert <= t3) {
-            // obere Trapezkante
-            return 1.0;
-        }
-
-        // Wert nicht im Fuzzy-Set enthalten
-        return 0.0;
-    }
 
     @Override
     public String toString() {
