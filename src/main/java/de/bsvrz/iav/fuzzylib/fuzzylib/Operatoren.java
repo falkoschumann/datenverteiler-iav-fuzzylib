@@ -46,6 +46,7 @@ public class Operatoren {
     public static LinguistischerTerm min(LinguistischerTerm ergebnis,
                                          LinguistischerTerm... operanden) {
         validiereArgumente(ergebnis, operanden);
+
         double min = Double.MAX_VALUE;
         for (LinguistischerTerm o : operanden)
             if (o.getZugehoerigkeit() < min)
@@ -73,6 +74,7 @@ public class Operatoren {
     public static LinguistischerTerm max(LinguistischerTerm ergebnis,
                                          LinguistischerTerm... operanden) {
         validiereArgumente(ergebnis, operanden);
+
         double max = Double.MIN_VALUE;
         for (LinguistischerTerm o : operanden)
             if (o.getZugehoerigkeit() > max)
@@ -88,6 +90,7 @@ public class Operatoren {
     public static LinguistischerTerm algebraischesProdukt(LinguistischerTerm ergebnis,
                                                           LinguistischerTerm... operanden) {
         validiereArgumente(ergebnis, operanden);
+
         double produkt = 1.0;
         for (LinguistischerTerm o : operanden)
             produkt *= o.getZugehoerigkeit();
@@ -102,6 +105,7 @@ public class Operatoren {
     public static LinguistischerTerm algebraischesSumme(LinguistischerTerm ergebnis,
                                                         LinguistischerTerm... operanden) {
         validiereArgumente(ergebnis, operanden);
+
         double d = 1.0;
         for (LinguistischerTerm o : operanden)
             d *= 1 - o.getZugehoerigkeit();
@@ -110,13 +114,17 @@ public class Operatoren {
     }
 
     /**
-     * Wendet den Gamma-Operator auf die Operanden an und speichert das Resultat im Ergebnis. Zum
-     * Verketten von Operatoren wird das Ergebnis von der Methode auch zurückgegeben.
+     * Wendet den Gamma-Operator auf die Operanden an und speichert das Resultat im Ergebnis. Der
+     * Wert für Gamma muss im Intervall [0,1] liegen. Zum Verketten von Operatoren wird das Ergebnis
+     * von der Methode auch zurückgegeben.
      */
     public static LinguistischerTerm gammaOperator(LinguistischerTerm ergebnis,
                                                    double gamma,
                                                    LinguistischerTerm... operanden) {
         validiereArgumente(ergebnis, operanden);
+        if (gamma < 0 || gamma > 1)
+            throw new IllegalArgumentException("Der Parameter gamma muss im Intervall [0,1] liegen");
+
         LinguistischerTerm produkt = new LinguistischerTerm();
         algebraischesProdukt(produkt, operanden);
         LinguistischerTerm summe = new LinguistischerTerm();
@@ -124,6 +132,22 @@ public class Operatoren {
         ergebnis.setZugehoerigkeit(Math.pow(produkt.getZugehoerigkeit(), 1.0 - gamma)
                 * Math.pow(summe.getZugehoerigkeit(), gamma));
 
+        return ergebnis;
+    }
+
+    /**
+     * Berechnet das Komplement des Operanden und speichert es im Ergebnis. Das Komplement
+     * entspricht dem logischen Nicht-Operator. Zum Verketten von Operatoren wird das Ergebnis von
+     * der Methode auch zurückgegeben.
+     */
+    public static LinguistischerTerm komplement(LinguistischerTerm ergebnis,
+                                           LinguistischerTerm operand) {
+        if (ergebnis == null)
+            throw new NullPointerException("Der Parameter ergebnis ist null.");
+        if (operand == null)
+            throw new NullPointerException("Der Parameter operand ist null.");
+
+        ergebnis.setZugehoerigkeit(1 - operand.getZugehoerigkeit());
         return ergebnis;
     }
 

@@ -96,13 +96,23 @@ public class OperatorenTest {
     @Test
     public void testKombinationVonOperatoren() {
         LinguistischerTerm t1 = new LinguistischerTerm("t1");
-        LinguistischerTerm t2 = new LinguistischerTerm("t2", 0.7);
+        LinguistischerTerm t2 = new LinguistischerTerm("t2", 0.3);
         LinguistischerTerm t3 = new LinguistischerTerm("t3", 0.3);
-        LinguistischerTerm t4 = new LinguistischerTerm("t4", 0.5);
+        LinguistischerTerm t4 = new LinguistischerTerm("t4", 0.4);
 
-        Operatoren.min(t1, t2, Operatoren.max(t1, t3, t4));
+        Operatoren.min(t1, Operatoren.komplement(t1, t2), Operatoren.max(t1, t3, t4));
 
-        assertEquals(0.5, t1.getZugehoerigkeit(), 0.00001);
+        assertEquals(0.4, t1.getZugehoerigkeit(), 0.00001);
+    }
+
+    @Test
+    public void testKomplement() {
+        LinguistischerTerm t1 = new LinguistischerTerm("t1");
+        LinguistischerTerm t2 = new LinguistischerTerm("t2", 0.3);
+
+        Operatoren.komplement(t1,  t2);
+
+        assertEquals(0.7, t1.getZugehoerigkeit(), 0.00001);
     }
 
 }
