@@ -32,11 +32,11 @@ import org.junit.Test;
 import static org.junit.Assert.assertEquals;
 
 /**
- * Unit Tests für die Operatoren auf linguistischen Termen.
+ * Unit Tests für die Inferenz auf linguistischen Termen.
  *
  * @author Falko Schumann &lt;falko.schumann@muspellheim.de&gt;
  */
-public class OperatorenTest {
+public class InferenzTest {
 
     @Test
     public void testMin() {
@@ -44,7 +44,7 @@ public class OperatorenTest {
         LinguistischerTerm t2 = new LinguistischerTerm("t2", 0.3);
         LinguistischerTerm t3 = new LinguistischerTerm("t3", 0.7);
 
-        Operatoren.min(t1, t2, t3);
+        Inferenz.min(t1, t2, t3);
 
         assertEquals(0.3, t1.getZugehoerigkeit(), 0.00001);
     }
@@ -55,7 +55,7 @@ public class OperatorenTest {
         LinguistischerTerm t2 = new LinguistischerTerm("t2", 0.7);
         LinguistischerTerm t3 = new LinguistischerTerm("t3", 0.3);
 
-        Operatoren.max(t1, t2, t3);
+        Inferenz.max(t1, t2, t3);
 
         assertEquals(0.7, t1.getZugehoerigkeit(), 0.00001);
     }
@@ -66,7 +66,7 @@ public class OperatorenTest {
         LinguistischerTerm t2 = new LinguistischerTerm("t2", 0.3);
         LinguistischerTerm t3 = new LinguistischerTerm("t3", 0.7);
 
-        Operatoren.algebraischesProdukt(t1, t2, t3);
+        Inferenz.algebraischesProdukt(t1, t2, t3);
 
         assertEquals(0.21, t1.getZugehoerigkeit(), 0.00001);
     }
@@ -77,7 +77,7 @@ public class OperatorenTest {
         LinguistischerTerm t2 = new LinguistischerTerm("t2", 0.3);
         LinguistischerTerm t3 = new LinguistischerTerm("t3", 0.7);
 
-        Operatoren.algebraischesSumme(t1, t2, t3);
+        Inferenz.algebraischesSumme(t1, t2, t3);
 
         assertEquals(0.79, t1.getZugehoerigkeit(), 0.00001);
     }
@@ -88,19 +88,19 @@ public class OperatorenTest {
         LinguistischerTerm t2 = new LinguistischerTerm("t2", 0.3);
         LinguistischerTerm t3 = new LinguistischerTerm("t3", 0.7);
 
-        Operatoren.gammaOperator(t1, 0.5, t2, t3);
+        Inferenz.gammaOperator(t1, 0.5, t2, t3);
 
         assertEquals(0.407308, t1.getZugehoerigkeit(), 0.00001);
     }
 
     @Test
-    public void testKombinationVonOperatoren() {
+    public void testKombinationVonInferenz() {
         LinguistischerTerm t1 = new LinguistischerTerm("t1");
         LinguistischerTerm t2 = new LinguistischerTerm("t2", 0.3);
         LinguistischerTerm t3 = new LinguistischerTerm("t3", 0.3);
         LinguistischerTerm t4 = new LinguistischerTerm("t4", 0.4);
 
-        Operatoren.min(t1, Operatoren.komplement(t1, t2), Operatoren.max(t1, t3, t4));
+        Inferenz.min(t1, Inferenz.komplement(t1, t2), Inferenz.max(t1, t3, t4));
 
         assertEquals(0.4, t1.getZugehoerigkeit(), 0.00001);
     }
@@ -110,7 +110,7 @@ public class OperatorenTest {
         LinguistischerTerm t1 = new LinguistischerTerm("t1");
         LinguistischerTerm t2 = new LinguistischerTerm("t2", 0.3);
 
-        Operatoren.komplement(t1,  t2);
+        Inferenz.komplement(t1, t2);
 
         assertEquals(0.7, t1.getZugehoerigkeit(), 0.00001);
     }
