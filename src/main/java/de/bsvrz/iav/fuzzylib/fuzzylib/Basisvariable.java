@@ -40,6 +40,9 @@ import java.util.Map;
  */
 public class Basisvariable {
 
+    // TODO Wird ein Wertebereich benötigt? (z.B. für Norden?)
+    // TODO Wie soll eine Definitionslücke erkannt werden? (IAV-38)
+
     private Map<String, FuzzySet> fuzzySets = new LinkedHashMap<String, FuzzySet>();
 
     public List<FuzzySet> getFuzzySets() {
