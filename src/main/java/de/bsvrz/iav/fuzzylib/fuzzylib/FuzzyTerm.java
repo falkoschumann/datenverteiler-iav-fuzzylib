@@ -29,6 +29,8 @@ package de.bsvrz.iav.fuzzylib.fuzzylib;
 
 /**
  * Definiert einen Fuzzy-Term bestehend aus dem Namen der Basisvariable und dem Namen des Terms.
+ * <p/>
+ * Ein Fuzzy-Term ist Teil der Konklusion einer Fuzzy-Regel.
  *
  * @author Falko Schumann &lt;falko.schumann@muspellheim.de&gt;
  */

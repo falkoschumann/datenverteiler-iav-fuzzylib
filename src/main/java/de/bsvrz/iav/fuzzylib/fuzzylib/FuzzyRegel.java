@@ -33,8 +33,8 @@ import java.util.List;
 /**
  * Definiert eine Regel einer Fuzzy-Wissensbasis in Form einer konjunktiven Normalform (KNF). Die
  * KNF wird aus einer Konjunktion von Disjunktionstermen gebildet. Das bedeutet die Terme einer
- * Variable der Prämisse werden mit <em>oder</em> verknüpft und die Variablen selbst werden mit
- * <em>und</em> verknüpft.
+ * linguistischen Variable der Prämisse werden mit <em>oder</em> verknüpft und die linguistischen
+ * Variablen untereinande werden mit <em>und</em> verknüpft.
  *
  * @author Falko Schumann &lt;falko.schumann@muspellheim.de&gt;
  */

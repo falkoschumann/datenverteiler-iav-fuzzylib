@@ -36,6 +36,8 @@ import java.util.List;
  * <p/>
  * Der Zyklus ist eine positive Zahl im Intervall [0,127]. Die 0 steht für den aktuellen Zyklus, die
  * 1 für den letzten, die 2 für den vorletzte, die 3 für den vorvorletzten usw.
+ * <p/>
+ * Eine Fuzzy-Variable ist Teil der Prämisse einer Fuzzy-Regel.
  *
  * @author Falko Schumann &lt;falko.schumann@muspellheim.de&gt;
  */

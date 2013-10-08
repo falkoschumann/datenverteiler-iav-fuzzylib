@@ -33,8 +33,8 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Eine Basisvariable fasst die Fuzzy-Sets mit denen eine linguistische Variabe gebildet wird
- * zusammen.
+ * Eine Basisvariable fasst die Fuzzy-Sets zusammen mit denen eine linguistische Variabe gebildet
+ * wird.
  *
  * @author Falko Schumann &lt;falko.schumann@muspellheim.de&gt;
  */

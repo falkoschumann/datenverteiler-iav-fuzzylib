@@ -34,19 +34,13 @@ package de.bsvrz.iav.fuzzylib.fuzzylib;
  * Der erste und letzte Punkt hat die Zugehörigkeit 0 und der zweite und dritte Punkt hat die
  * Zugehörigkeit 1.
  * <p/>
- * Neben dem Trapez selbst werden folgende Spezialfälle des Trapzes häufig verwendet:
+ * Mit Hilfe des Trapezes lassen sich auch die folgenden Fuzzy-Funktionen definieren:
  * <ul>
- * <li>Dreieck: der erste und letzte Punkt haben die Zugehörigkeit 0, der zweite und dritte Punkt
- * sind identisch und haben die Zugehörigkeit 1</li>
- * <li>Aufsteigende Rampe: der erste Punkt hat die Zugehörigkeit 0, der zweite Punkt hat die
- * Zugehörigkeit 1, der dritte und vierte Punkt sind identisch und haben die Zugehörigkeit 1</li>
- * <li>Absteigende Rampe: der erste und zweite Punkt sind identisch und haben die Zugehörigkeit 1,
- * der dritte Punkt hat die Zugehörigkeit 1, der vierte Punkt hat die Zugehörigkeit 0</li>
- * <li>Sonderfall Trapez über Wertebereichsgrenzen: z.B. Norden bei der Windrichtung; hier liegen
- * der erste und zweite Punkt hinter den dritten und vierten Punkt; der erste Punkt und der vierte
- * Punkt haben die Zugehörigkeit 0, der zweite und dritte Punkt haben die Zugehörigkeit 1.</li>
+ * <li>Dreieck: der zweite und dritte Punkt sind identisch</li>
+ * <li>Aufsteigende Rampe: der dritte und vierte Punkt sind identisch</li>
+ * <li>Absteigende Rampe: der erste und zweite Punkt sind identisch</li>
  * </ul>
- * TODO Fuzzy-Funktionen mit Bild verdeutlichen
+ * <img src="doc-files/fuzzy-funktionen.png">
  *
  * @author Falko Schumann &lt;falko.schumann@muspellheim.de&gt;
  */
@@ -144,7 +138,6 @@ public class FuzzySet {
         // Wert nicht im Fuzzy-Set enthalten
         return 0.0;
     }
-
 
     @Override
     public String toString() {

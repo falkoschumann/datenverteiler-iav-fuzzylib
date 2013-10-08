@@ -28,7 +28,7 @@
 package de.bsvrz.iav.fuzzylib.fuzzylib;
 
 /**
- * Ein LinguistischerTerm einer linguistischen Variable.
+ * Ein linguistischer Term einer linguistischen Variable.
  * <p/>
  * Die Zugehörigkeit muss im Interval [0,1] liegen.
  *
