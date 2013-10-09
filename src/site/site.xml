@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/DECORATION/1.4.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/DECORATION/1.4.0 http://maven.apache.org/xsd/decoration-1.4.0.xsd">
+    <body>
+        <menu name="Übersicht">
+            <item name="Einleitung" href="index.html"/>
+            <item name="Verwendung" href="verwendung.html"/>
+        </menu>
+        <menu name="Beispiele">
+            <item name="XXX" href="beispiele/xxx.html"/>
+        </menu>
+        <menu name="Entwicklung">
+            <item name="Anforderungen" href="entwicklung/anforderungen.html"/>
+            <item name="Testabdeckung" href="entwicklung/testabdeckung.html"/>
+        </menu>
+        <menu ref="parent"/>
+        <menu ref="modules"/>
+        <menu ref="reports"/>
+        <links>
+            <item name="GitHub" href="https://github.com/falkoschumann/datenverteiler-iav-fuzzylib"/>
+            <item name="Muspellheim" href="http://www.muspellheim.de"/>
+            <item name="NERZ e.V." href="http://www.nerz-ev.de"/>
+        </links>
+    </body>
+</project>

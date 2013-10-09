@@ -1,0 +1,21 @@
+IAV Funktionen Fuzzy
+
+  Die Fuzzy Funktionsbibliothek stellt allgemeine Funktionen zur Verfügung, die bei der Ermittlung
+  von fuzzyfizierten Größen im Rahmen der Straßensubsegmentanalyse verwendet werden. Eine weitere
+  Anwendung dieser Funktionen findet sich in der umfassenden Datenanalyse.
+
+  Die Fuzzy Funktionsbibliothek setzt sich aus den drei Basisfunktionalitäten Fuzzyfizierung von
+  Eingangsvariablen, Abarbeitung von Regelbasen und Aggregation von linguistischen Variablen
+  zusammen.
+
+* Verwendung
+
+  Eine kurze Beschreibung der Verwendung der Funktionsbibliothek befindet sich auf der
+  {{{./verwendung.html}Seite Verwendung}}.
+
+* Beispiel
+
+  Zum besseren Verständnis für die Verwendung der Bibliothek können Sie sich die folgenden Beispiele
+  anschauen:
+
+  * {{{./beispiele/xxx.html}XXX}} - XXX
